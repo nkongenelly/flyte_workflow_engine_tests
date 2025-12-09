@@ -1,0 +1,3 @@
+[submodule "snpseq-packs/test_automation_engine_stackstorm"]
+	path = snpseq-packs/test_automation_engine_stackstorm
+	url = https://github.com/nkongenelly/test_automation_engine_stackstorm.git

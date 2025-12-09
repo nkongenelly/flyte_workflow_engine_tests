@@ -20,4 +20,7 @@ uv sync
 
 # Run the checkqc workflow (called fetch_workflow) found in the run_checkqc.py file
 pyflyte run run_checkqc.py fetch_workflow
+
+# Watch monitored directories to start run_checkqc when a file is added (uses Python 'Watchdog' library)
+python runfolder_sensor.py 
 ```

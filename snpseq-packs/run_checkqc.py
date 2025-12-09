@@ -20,10 +20,6 @@ image_spec = fl.ImageSpec(
 )
 
 
-# @fl.task(container_image=image_spec)
-# def say_hello(name: str) -> str:
-#     return f"Hello, {name}!"
-
 @fl.task(container_image=image_spec)
 def run_checkqc(url: str) -> dict:
     """Fetch JSON data from a given URL."""
@@ -32,12 +28,7 @@ def run_checkqc(url: str) -> dict:
     return response.json()
 
 @fl.workflow
-def fetch_workflow() -> dict:
-    url = "http://localhost:9992/qc/200624_A00834_0183_BHMTFYTINY?useClosestReadLength&downgrade=ReadsPerSampleHandler"
+def fetch_workflow(url: str) -> dict:
+    # url = "http://localhost:9992/qc/200624_A00834_0183_BHMTFYTINY?useClosestReadLength&downgrade=ReadsPerSampleHandler"
     greeting = run_checkqc(url=url)
     return greeting
-
-
-if __name__ == "__main__":
-    # Example run
-    print(fetch_workflow())
