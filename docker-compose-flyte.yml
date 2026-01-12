@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  flyte-demo:
+    image: ghcr.io/flyteorg/flyte-sandbox:latest
+    ports:
+      - "8088:8088"  # Flyte UI
+      - "8089:8089"  # gRPC
+    network_mode: host  # allows access to localhost:9992 (checkqc-ws)
+    volumes:
+      - ./snpseq-packs:/workflows
+    working_dir: /workflows
+    environment:
+      - FLYTE_PROPELLER_QUEUE_ID=default
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/api/v1/projects"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

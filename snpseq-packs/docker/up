@@ -1,0 +1,13 @@
+#!/bin/bash
+set -o errexit
+set -o xtrace
+
+docker compose up -d
+
+sleep 30 && docker-compose -f docker-compose.yml ps
+
+cd /home/nelnk861/Documents/code/arteria_lab/flyte/snpseq-packs
+
+python -m flytekit.bin.cli create launchplan --image ghcr.io/flyteorg/flyte-sandbox:latest runfolder_sensor.py
+
+flytectl create launchplan -f runfolder_sensor.py
